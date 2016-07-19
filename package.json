@@ -1,0 +1,12 @@
+{
+	"name":        "mickey",
+	"description": "A modern wiki engine based on Git.",
+	"version":     "0.1.0",
+	"main":        "index.js",
+	"keywords":    ["wiki", "git"],
+	"author":      "Jannis R <mail@jannisr.de>",
+	"homepage":    "https://github.com/derhuerst/mickey",
+	"repository":  "derhuerst/mickey",
+	"issues":      "https://github.com/derhuerst/mickey/issues",
+	"license":     "ISC"
+}
