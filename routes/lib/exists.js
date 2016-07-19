@@ -2,7 +2,7 @@
 
 const boom = require('boom')
 
-const data = require('./data')
+const data = require('../../lib/data')
 
 
 

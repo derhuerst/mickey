@@ -1,7 +1,7 @@
 'use strict'
 
-const render = require('./render')
-const data = require('./data')
+const render = require('../lib/render')
+const data = require('../lib/data')
 
 
 
