@@ -15,12 +15,11 @@ const err = (e) => {throw e}
 
 
 
-const exists = (slug) =>
-	fs.stat(path.join(cfg.dir, slug + '.md'))
-	.then((stats) => stats.isFile(), (err) => {
-		if (err.code === 'ENOENT') return false
-		else throw err
-	})
+const exists = so(function* (slug) {
+	const repo = yield handle
+	const head = yield _.head(repo)
+	return head.hasFile(slug + '.md')
+})
 
 
 

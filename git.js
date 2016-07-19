@@ -23,6 +23,10 @@ const fileHistory = (repo, file, count) =>
 
 
 
+const fileInCommit = (commit) => (name) =>
+	commit.getEntry(name)
+	.then(() => true, () => false)
+
 const fileOfCommit = (commit) => (name) =>
 	commit.getEntry(name)
 	.then((f) => ({
@@ -44,9 +48,16 @@ const commit = (repo, hash) =>
 		, committer: commit.committer().toString()
 		, date:      commit.date()
 		, message:   commit.message()
+		, hasFile:   fileInCommit(commit)
 		, file:      fileOfCommit(commit)
 	}), err)
 
 
 
-module.exports = {fileHistory, commit}
+const head = (repo) =>
+	repo.getHeadCommit()
+	.then((head) => commit(repo, head.sha()), err)
+
+
+
+module.exports = {fileHistory, commit, head}
