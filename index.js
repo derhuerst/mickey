@@ -18,6 +18,7 @@ app.use(tpl)
 
 app.get('/:slug', exists, view)
 app.get('/:slug/history', exists, history)
+app.get('/:slug/at/:hash', exists, view)
 
 app.use(oops)
 app.listen(cfg.port)
