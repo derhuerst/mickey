@@ -2,6 +2,7 @@
 
 const tpls = {
 	page: require('./page'),
+	view: require('./view'),
 	error: require('./error'),
 	history: require('./history')
 }
