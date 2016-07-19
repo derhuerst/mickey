@@ -24,16 +24,20 @@ const exists = (slug) =>
 
 
 
-const history = so(function* (slug, changes) {
+const history = so(function* (slug, count, content) {
 	const repo = yield handle
-	let history = yield _.fileHistory(repo, slug + '.md', changes)
+	let history = yield _.fileHistory(repo, slug + '.md', count)
 	history = history.map(so(function* (entry) {
 
 		const commit = yield _.commit(repo, entry.commit.sha())
-		const file = yield commit.file(slug + '.md')
-		commit.file = file
-		const content = yield file.content()
-		file.content = content
+
+		if (content) {
+			const file = yield commit.file(slug + '.md')
+			commit.file = file
+			const content = yield file.content()
+			file.content = content
+		}
+
 		return commit
 	}))
 	return yield Promise.all(history)
