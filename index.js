@@ -8,6 +8,7 @@ const exists = require('./routes/lib/exists')
 const oops = require('./routes/lib/oops')
 const tpl = require('./tpl/engine')
 
+const index = require('./routes/index')
 const view = require('./routes/view')
 const history = require('./routes/history')
 
