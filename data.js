@@ -9,7 +9,7 @@ const _ = require('./git')
 
 
 
-let handle = git.Repository.open(cfg.dir)
+let handle = git.Repository.openBare(cfg.dir)
 
 const err = (e) => {throw e}
 
