@@ -44,4 +44,19 @@ const history = so(function* (slug, count, content) {
 
 
 
-module.exports = {exists, history}
+const md = so(function* (slug) {
+	const repo = yield handle
+	const head = yield _.head(repo)
+	return mdAt(slug, head.sha1)
+})
+
+const mdAt = so(function* (slug, hash) {
+	const repo = yield handle
+	const commit = yield _.commit(repo, hash)
+	const file = yield commit.file(slug + '.md')
+	return file.content()
+})
+
+
+
+module.exports = {exists, history, md, mdAt}

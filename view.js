@@ -1,14 +1,20 @@
 'use strict'
 
-const cfg = require('config')
-const serve = require('serve-static')
+const render = require('./render')
+const data = require('./data')
 
 
 
-const view = serve(cfg.dir, {
-	extensions: ['html'],
-	index: false,
-	redirect: false
-})
+const err = (e) => {throw e}
 
-module.exports = view
+const commit = (req, res, next) => {
+	data.md(req.params.slug)
+	.then(render, err)
+	.then((content) => res.render('view', req.params.slug, content), err)
+	.then((html) => {
+		res.end(html)
+		next()
+	}, next)
+}
+
+module.exports = commit
